@@ -1,0 +1,20 @@
+{%- if product.id -%}
+  <section class="product-recommendations">
+    <div class="container">
+      <h2 class="section-title" data-underline style="font-size: clamp(1.5rem, 3vw, 2.5rem); margin-bottom: 2.5rem;">
+        YOU MIGHT ALSO LIKE
+      </h2>
+      <div class="recommendations-grid" data-recommendations data-product-id="{{ product.id }}">
+        <!-- Populated by JS via /recommendations/products.json -->
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Product Recommendations",
+  "settings": [],
+  "presets": [{ "name": "Product Recommendations" }]
+}
+{% endschema %}
