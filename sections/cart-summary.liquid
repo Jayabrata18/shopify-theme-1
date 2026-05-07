@@ -1,0 +1,47 @@
+{%- assign threshold = settings.free_shipping_threshold | default: '999' | plus: 0 -%}
+{%- assign threshold_cents = threshold | times: 100 -%}
+
+<div class="cart-summary">
+  <div class="cart-summary-row">
+    <span>SUBTOTAL</span>
+    <span>{{ cart.total_price | money }}</span>
+  </div>
+
+  <div class="cart-summary-row">
+    <span>SHIPPING</span>
+    {%- if cart.total_price >= threshold_cents -%}
+      <span class="free-shipping-msg">FREE ✓</span>
+    {%- else -%}
+      <span>₹99</span>
+    {%- endif -%}
+  </div>
+
+  <div class="cart-summary-row total">
+    <span class="s-label">TOTAL</span>
+    <span class="s-value">{{ cart.total_price | money }}</span>
+  </div>
+
+  <a href="/checkout" class="btn btn-solid" style="width:100%; justify-content:center; margin-top:0.5rem;">
+    <span>PROCEED TO CHECKOUT</span>
+  </a>
+
+  <form action="/discount/" method="post" class="promo-wrap">
+    <input type="text" name="discount" id="discount-code" class="promo-input" placeholder="PROMO CODE" aria-label="Promo code">
+    <button type="submit" class="promo-submit">APPLY</button>
+  </form>
+
+  <div style="display:flex; gap:0.75rem; justify-content:center; margin-top:0.5rem; opacity:0.45;">
+    <span style="font-family:var(--font-body);font-size:0.62rem;letter-spacing:0.1em;color:var(--text-muted);">VISA</span>
+    <span style="font-family:var(--font-body);font-size:0.62rem;letter-spacing:0.1em;color:var(--text-muted);">MASTERCARD</span>
+    <span style="font-family:var(--font-body);font-size:0.62rem;letter-spacing:0.1em;color:var(--text-muted);">UPI</span>
+    <span style="font-family:var(--font-body);font-size:0.62rem;letter-spacing:0.1em;color:var(--text-muted);">RAZORPAY</span>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cart Summary",
+  "settings": [],
+  "presets": [{ "name": "Cart Summary" }]
+}
+{% endschema %}
