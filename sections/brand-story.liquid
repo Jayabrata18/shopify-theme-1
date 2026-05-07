@@ -1,0 +1,23 @@
+<section class="brand-story">
+  <div class="container">
+    <div class="brand-story-grid">
+      <div class="brand-story-copy reveal">
+        {{ section.settings.copy | default: "<p>URBNMYTH is a language spoken in alleyways and auction houses alike. Born from the streets of Delhi, dressed in the silence of old money.</p><p>Every piece is a relic from a future that hasn't arrived yet. We don't make clothes — we make mythology.</p>" }}
+      </div>
+      <div class="brand-story-panel reveal" data-reveal-delay="160">
+        <span class="brand-story-year">EST. {{ section.settings.year | default: '2024' }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brand Story",
+  "settings": [
+    { "type": "richtext", "id": "copy", "label": "Brand copy" },
+    { "type": "text",     "id": "year", "label": "Established year", "default": "2024" }
+  ],
+  "presets": [{ "name": "Brand Story" }]
+}
+{% endschema %}

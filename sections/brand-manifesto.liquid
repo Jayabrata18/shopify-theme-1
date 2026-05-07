@@ -1,0 +1,17 @@
+<section class="manifesto">
+  <div class="container">
+    <div class="manifesto-inner reveal">
+      <p class="manifesto-text">{{ section.settings.text | default: "WE DON'T FOLLOW TRENDS. WE BURY THEM." }}</p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brand Manifesto",
+  "settings": [
+    { "type": "text", "id": "text", "label": "Manifesto text", "default": "WE DON'T FOLLOW TRENDS. WE BURY THEM." }
+  ],
+  "presets": [{ "name": "Brand Manifesto" }]
+}
+{% endschema %}
