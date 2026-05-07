@@ -71,3 +71,52 @@ input, select { font-family: inherit; }
 .reveal.revealed { opacity: 1; transform: translateY(0); }
 
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* ——— Loading Screen ——— */
+#loading-screen {
+  position: fixed; inset: 0;
+  background: var(--bg);
+  z-index: 9000;
+  display: flex; align-items: center; justify-content: center;
+  transition: clip-path 0.6s var(--ease-drawer);
+  clip-path: inset(0 0 0% 0);
+}
+#loading-screen.wipe-out { clip-path: inset(0 0 100% 0); }
+
+#loading-monogram {
+  font-family: var(--font-display);
+  font-size: 6rem;
+  color: var(--accent);
+  animation: monogramPulse 1.5s ease-in-out infinite;
+  letter-spacing: -0.02em;
+}
+
+/* ——— Page Transition Panel ——— */
+#page-transition {
+  position: fixed; inset: 0;
+  background: var(--accent);
+  z-index: 8999;
+  clip-path: inset(0 100% 0 0);
+  pointer-events: none;
+  transition: clip-path 0.45s var(--ease-drawer);
+}
+#page-transition.wipe-in  { clip-path: inset(0 0% 0 0);   pointer-events: all; }
+#page-transition.wipe-out { clip-path: inset(0 0 0 100%); }
+
+/* ——— Custom Cursor ——— */
+#cursor-ring {
+  position: fixed; top: 0; left: 0;
+  width: 28px; height: 28px;
+  border: 1.5px solid var(--highlight);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+  mix-blend-mode: difference;
+  display: flex; align-items: center; justify-content: center;
+}
+#cursor-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+#cursor-ring.cursor-hover { width: 56px; height: 56px; }
+
+@media (hover: none) { #cursor-ring { display: none; } body, a, button { cursor: auto; } }
