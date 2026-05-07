@@ -1,0 +1,31 @@
+<section class="section" style="padding-top: 1rem;">
+  <div class="container">
+    {%- paginate collection.products by 12 -%}
+      {%- if collection.products.size > 0 -%}
+        <div class="product-grid">
+          {%- for product in collection.products -%}
+            {% render 'product-card', product: product %}
+          {%- endfor -%}
+        </div>
+
+        {%- if paginate.pages > 1 -%}
+          <div style="text-align:center; margin-top: 4rem;">
+            {{ paginate | default_pagination: next: 'NEXT →', previous: '← PREV' }}
+          </div>
+        {%- endif -%}
+      {%- else -%}
+        <p style="font-family: var(--font-display); font-size: 2rem; color: var(--text-muted); text-align: center; padding: 6rem 0;">
+          NO PRODUCTS FOUND
+        </p>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Grid",
+  "settings": [],
+  "presets": [{ "name": "Product Grid" }]
+}
+{% endschema %}
